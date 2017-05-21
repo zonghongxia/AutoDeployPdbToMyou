@@ -8,6 +8,7 @@
 #include <algorithm>
 #include "List_Filepath.h"
 #include "../myou/unzip.h"
+#include "Move_Cursor.h"
 
 class _UNZIP
 {

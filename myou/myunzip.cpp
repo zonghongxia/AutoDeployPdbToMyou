@@ -23,7 +23,8 @@ void _UNZIP::Create_Zip()
 	HZIP hz;
 	ZIPENTRY ze;
 
-	hz = OpenZip(path, 0);//(正确)
+	cout << "解压开始" << endl;
+	hz = OpenZip(path, 0);//打开一个解压文件
 	GetZipItem(hz, -1, &ze);
 	if (*zippath != '\0')
 	{
@@ -35,6 +36,28 @@ void _UNZIP::Create_Zip()
 		ZIPENTRY ze;
 		GetZipItem(hz, zi, &ze); 
 		UnzipItem(hz, zi, ze.name); 
+
+		if (zi == numitems - 1)
+		{
+			zi += 1;
+		}
+		COORD coord = getxy();//获取当前光标所在的位置
+		double tmpnum = (static_cast<double>(zi) / (static_cast<double>(numitems))) * 100;
+		char input[10] = { 0 };
+		sprintf(input, "%0.1f", tmpnum);
+		strcat(input, "%");
+		cout << input;
+		if (zi == numitems - 1)
+		{
+			continue;
+		}
+		else
+		{
+			gotoxy(coord.X, coord.Y);//固定到获取的光标的位置
+		}
+
 	}
+	cout << endl;
+	cout << "解压完成" << endl;
 	CloseZip(hz);
 }

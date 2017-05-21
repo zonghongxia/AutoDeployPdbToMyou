@@ -33,6 +33,18 @@
     <ClCompile Include="myunzip.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Move_Cursor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Rename.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Get_Cookie.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PostFiletoWeb.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List_Filepath.h">
@@ -42,6 +54,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="myunzip.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Move_Cursor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Rename.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Get_Cookie.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PostFiletoWeb.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

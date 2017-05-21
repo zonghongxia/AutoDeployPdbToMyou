@@ -8,6 +8,11 @@
 #include <algorithm>
 #include "List_Filepath.h"
 #include "../myou/zip.h"
+#include "Move_Cursor.h"
+
+const int LENSZIP = 4;
+
+const int TMP_LENGTH = 128;
 
 void GetSubStr(string path, string &subtmp);
 

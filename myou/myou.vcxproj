@@ -146,17 +146,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Get_Cookie.cpp" />
     <ClCompile Include="List_Filepath.cpp" />
+    <ClCompile Include="Move_Cursor.cpp" />
     <ClCompile Include="myunzip.cpp" />
     <ClCompile Include="myzip.cpp" />
+    <ClCompile Include="PostFiletoWeb.cpp" />
+    <ClCompile Include="Rename.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="unzip.cpp" />
     <ClCompile Include="zip.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Get_Cookie.h" />
     <ClInclude Include="List_Filepath.h" />
+    <ClInclude Include="Move_Cursor.h" />
     <ClInclude Include="myunzip.h" />
     <ClInclude Include="myzip.h" />
+    <ClInclude Include="PostFiletoWeb.h" />
+    <ClInclude Include="Rename.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

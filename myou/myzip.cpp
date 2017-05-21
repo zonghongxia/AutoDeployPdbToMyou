@@ -1,8 +1,5 @@
 #include "myzip.h"
 
-const int LENSZIP = 4;
-
-const int TMP_LENGTH = 128;
 
 using namespace std;
 
@@ -131,14 +128,38 @@ void _ZIP::Zip_Folder()
 	vector<string>file_vec = statdir.BeginBrowseFilenames("*.*");
 	vector<string> zipnamevector = GetZipNameFromPath(file_vec, path);
 	vector<string>::iterator zt = zipnamevector.begin();
-	int i = 0;
+	int zi = 0;
+	double numitems = file_vec.size()+1;
+	std::cout<<"压缩开始" << std::endl;
 	for (vector<string>::iterator it = file_vec.begin(); it < file_vec.end() && zt != zipnamevector.end(); ++it, ++zt)//遍历文件夹中的文件
 	{
-		i++;
+		
 		char *path = const_cast<char *>((*it).c_str());
 		char *zippath = const_cast<char *>((*zt).c_str());
 		ZipAdd(hz, zippath, path);
+
+		zi++;
+		if (zi == numitems - 1)
+		{
+			zi += 1;
+		}
+		COORD coord = getxy();//获取当前光标所在的位置
+		double tmpnum = (static_cast<double>(zi) / (static_cast<double>(numitems))) * 100;
+		char input[10] = { 0 };
+		sprintf(input, "%0.1f", tmpnum);
+		strcat(input,"%");
+		std::cout << input;
+		if (zi == numitems - 1)
+		{
+			continue;
+		}
+		else
+		{
+			gotoxy(coord.X, coord.Y);//固定到获取的光标的位置
+		}
 	}
+	std::cout << std::endl;
+	std::cout << "压缩完毕" << std::endl;
 	CloseZip(hz);
 }
 
