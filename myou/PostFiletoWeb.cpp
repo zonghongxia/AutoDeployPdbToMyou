@@ -2,6 +2,8 @@
 
 const std::string PostFiletoWeb::S_SUFFIX_RENAME = ".zip";
 
+bool PostFiletoWeb::m_btag = false;
+
 PostFiletoWeb::PostFiletoWeb(PostNode * const node)
 {
 	if (NULL == node)
@@ -12,6 +14,36 @@ PostFiletoWeb::PostFiletoWeb(PostNode * const node)
 	m_node = node;
 }
 PostFiletoWeb::~PostFiletoWeb()   {}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+int PostFiletoWeb::older_progress(void *p, double dltotal, double dlnow, double ultotal, double ulnow)
+{
+	if ((ulnow == ultotal && ulnow == 0) || (dltotal != 0) || (dlnow != 0))
+	{
+		;
+	}
+	else if (ulnow == ultotal && dltotal == 0 && dlnow == 0 && !m_btag)
+	{
+		std::cout << std::endl;
+		m_btag = true;
+	}
+	else
+	{
+		MoveCursor movecursor;
+		COORD coord = movecursor.getxy();
+		double tmpnum = (ulnow / ultotal) * 100.0;
+		char input[10] = { 0 };
+		sprintf(input, "%0.1f", tmpnum);
+		input[strlen(input)] = '%';
+		input[strlen(input)] = '\0';
+
+		std::cout << input << std::endl;
+		movecursor.gotoxy(coord.X, coord.Y);
+	}
+	return 0;
+}
+//////////////////////////////////////////////////////////////////////////////
 
 void PostFiletoWeb::PostHttp()
 {
@@ -57,6 +89,22 @@ void PostFiletoWeb::PostHttp()
 		curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
 		curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
 
+		/********************************************************************/
+		struct myprogress prog;
+
+		prog.lastruntime = 0;
+		prog.curl = curl;
+
+		curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 0);
+
+		curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, older_progress);
+		curl_easy_setopt(curl, CURLOPT_PROGRESSDATA, &prog);
+
+		/********************************************************************/
+
+
+		
+		std::cout << "开始上传" << std::endl;
 		res = curl_easy_perform(curl);//此函数以阻塞的方式进行了上传并返回服务器所返回的内容
 		if (res != CURLE_OK)
 		{
@@ -66,11 +114,11 @@ void PostFiletoWeb::PostHttp()
 		curl_easy_cleanup(curl);
 
 		curl_formfree(formpost);
+		std::cout << std::endl;
+		std::cout << "上传完毕" <<std:: endl;
 	}
 }
 void PostFiletoWeb::GetZipPath(std::string &path)
 {
 	path += S_SUFFIX_RENAME;
-	/*strcat(path, S_SUFFIX_RENAME);
-	path[strlen(path)] = '\0';*/
 }

@@ -6,9 +6,6 @@
 #include <string>
 #include <fstream>  
 #include <sstream>
-#include <curl/curl.h>
-#include "../myou/zip.h"
-#include "../myou/unzip.h"
 #include "myzip.h"
 #include "myunzip.h"
 #include "Rename.h"
@@ -35,7 +32,6 @@ int main()
 	unzipbuf = "D://zipfile";//所要解析到的目录
 	path = unzippathbuf;
 
-
 	//解压
 	UNZIP unzip(unzippathbuf, unzipbuf);//（压缩文件所在路径，自定义解压到什么路径否则压缩到当前项目所在目录下）
 	unzip.CreateZip();
@@ -43,7 +39,6 @@ int main()
 	//修改文件夹名字
 	ChangePath lpath;
 	lpath.GetUnzipFolderPath(path);//获取解压以后的文件夹所在的绝对路径
-	std::cout<<path << std::endl;
 	lpath.CopyPath(absolutepath, path);
 	lpath.GetZipFolderPath(absolutepath, G_GLOBAL_CHANGE_FOLDER_NAME);
 	Rename rename(path, absolutepath);
@@ -52,18 +47,16 @@ int main()
 	//压缩
 	ZIP zip(absolutepath.c_str());//(需要解压的路径，解压到的路径)
 	zip.CreateMyZip();
-	
 
 	////上传文件到web
 	PostFiletoWeb::GetZipPath(absolutepath);
 	std::string postfilepath = absolutepath;
 	std::string postfilename("symbol_file");
 	std::string appversionname("app_version");
-	std::string appversion("520.1.31.4");
+	std::string appversion("520.11.31.4");
 	std::string url = "http://myou.cvte.com/api/in/applications/cf167a622948a3b42a7d7aacfcf3dd64f6e4d81b/crashdumps/upload_symbols";
 
 	PostNode postnode = {url,cookie, postfilename, postfilepath, appversionname, appversion };
-
 	PostFiletoWeb posthttp(&postnode);
 	posthttp.PostHttp();
 	return 0;
