@@ -5,23 +5,27 @@
 #include <iostream>
 #include <curl/curl.h>
 
-using std::string;
-using std::cout;
-using std::endl;
+class GetCookie
+{
+public:
+	GetCookie(const std::string &getcookieurl,const std::string &userpassword,const std::string &contenttype);
+	~GetCookie();
 
-static const char* SET_COOKIE_FILE = "Set-Cookie:";
+	std::string GetCookies();
 
-int Get_SetCookie_Start_Index(const string ResponceHeader, const string substr);
+private:
+	int GetSetCookieStartIndex(const std::string &ResponceHeader, const std::string &substr);
+	int GetSetCookieEndIndex(const std::string &ResponceHeader, int StartIndex);
+	std::string GetSetCookieData(const std::string &ResponceHeader);
+	std::string readFileIntoString(std::string &filename);
 
-int Get_SetCookie_End_Index(const string ResponceHeader, int StartIndex);//int end = strHeader.find_first_of("\r\n", start);
+	static size_t CallBackWrite(const char *pdata, size_t size, int nmember, std::string  *pstrData);//回调函数的libcurl接口
+private:
+	static const std::string S_SET_COOKIE_FILE;
+	std::string m_getcookieurl;
+	std::string m_userpassword;
+	std::string m_contenttype;
+};
 
-string Get_SetCookie_Data(const string ResponceHeader);
-
-size_t CallBackWrite(const char *data, size_t size, int nmember, string  * strData);//写入数据的回调函数
-
-string GetCookies(const string strurl, const string name_and_password, string content_type);
-
-
-string readFileIntoString(string filename);
 
 #endif

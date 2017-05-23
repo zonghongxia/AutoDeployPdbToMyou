@@ -4,16 +4,30 @@
 #include <iostream>
 #include <curl/curl.h>
 
-using std::string;
+typedef struct PostNode
+{
+	const std::string m_cvteurl;
+	const std::string m_cookie;
+	const std:: string m_postfilename;
+	const std::string m_postfilepath;
+	const std::string m_appversionname;
+	const std::string m_appversion;
+}PostNode;
 
-void PostHttp
-(
-	const string cvte_url,
-	const string cookie, 
-	const string postfilename, 
-	const string postfilepath, 
-	const string app_version_name, 
-	const string app_version
-);
+class PostFiletoWeb
+{
+public:
+	PostFiletoWeb(PostNode * const node);
+	~PostFiletoWeb();
+
+	void PostHttp();
+
+	static void GetZipPath( std::string &path);
+private:
+	static const std::string S_SUFFIX_RENAME;
+
+	PostNode *m_node;
+};
+
 
 #endif

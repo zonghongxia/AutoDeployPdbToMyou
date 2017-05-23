@@ -153,7 +153,7 @@
     <ClCompile Include="myzip.cpp" />
     <ClCompile Include="PostFiletoWeb.cpp" />
     <ClCompile Include="Rename.cpp" />
-    <ClCompile Include="test.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="unzip.cpp" />
     <ClCompile Include="zip.cpp" />
   </ItemGroup>

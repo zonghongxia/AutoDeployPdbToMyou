@@ -10,20 +10,15 @@
 #include "../myou/unzip.h"
 #include "Move_Cursor.h"
 
-class _UNZIP
+class UNZIP
 {
 public:
-	_UNZIP(char *_path, char *_zippath);
-	~_UNZIP()
-	{
-		delete path;
-		delete zippath;
-
-	}
-	void Create_Zip();
+	UNZIP(const std::string  &ppath, const std::string  &pzippath);
+	~UNZIP();
+	void CreateZip();
 private:
-	char *path;
-	char *zippath;
+	std::string m_path;
+	std::string m_zippath;
 };
 
 

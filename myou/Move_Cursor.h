@@ -4,10 +4,19 @@
 #include<Windows.h>
 #include<conio.h>
 #include <iomanip>
-using namespace std;
 
-void gotoxy(int x, int y);//将光标设置到屏幕上的某个位置
+class MoveCursor
+{
+public:
+	MoveCursor();
+	~MoveCursor();
 
-COORD getxy();//获取当前光标的位置
+	void gotoxy(int x, int y);//将光标跳到x,y的位置
+
+	COORD getxy();//获取当前光标所在位置
+private:
+	int m_x;//横坐标
+	int m_y;//纵坐标
+};
 
 #endif
