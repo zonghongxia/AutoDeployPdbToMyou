@@ -14,14 +14,16 @@ void ZIP::GetSubStr(const std::string &path, std::string &subtmp)
 	}
 	int i = path.size() - 1;
 	bool btag = true;
-	while (path[i] != '/')
+	while (path[i] != '\\')
 	{
 		btag = false;
 		--i;
 	}
 	if (!btag)
 	{
-		subtmp.insert(0, path, i + 1, path.size() - i);
+		//subtmp.insert(0, path, i + 1, path.size() - i);
+		std::string tmp = path;
+		subtmp = tmp.assign(tmp,i+1,tmp.size()-1);
 	}
 }
 
@@ -34,18 +36,28 @@ void ZIP::GetZipNameFromPath(const std::vector<std::string> &ve, const std::stri
 
 	std::string l_subtmp;
 	GetSubStr(path, l_subtmp);//»ñÈ¡ĞèÒªÑ¹ËõµÄÎÄ¼ş¼Ğ
+	//"D:\\myouser\\6.0\\SeewoService\\symbols\\6.0.8.5551\\symbols"
+
+	std::string tmp = path;
+	int i;
+	for (i = tmp.size() - 1; i >= 0; --i)
+	{
+		if (tmp[i] == '\\')
+		{
+			break;
+		}
+	}
+
 
 	for (std::vector<std::string>::const_iterator it = ve.begin(); it != ve.end(); ++it)
 	{
-		size_t rt = (*it).find(l_subtmp);
+		//size_t rt = (*it).find(l_subtmp);
+		size_t rt = (*it).find(l_subtmp,i);
 		std::string l_tmp;
 		l_tmp = (*it).substr(rt, (*it).size() - rt);
 		zipvector.push_back(l_tmp);
 	}
 }
-
-
-
 
 ZIP::ZIP(const std::string &ppath, std::string &pzipfilename)//ÊäÈëÒ»¸öÂ·¾¶ºÍĞèÒªÑ¹ËõµÄÎÄ¼şµÄÂ·¾¶
 {
@@ -56,20 +68,15 @@ ZIP::ZIP(const std::string &ppath, std::string &pzipfilename)//ÊäÈëÒ»¸öÂ·¾¶ºÍĞèÒ
 		if (IsFolder())//ÅĞ¶ÏÊÇ·ñÎªÎÄ¼ş¼Ğ
 		{
 			m_zipfilename += ".zip";
-			//strcat(m_zipfilename, ".zip");
 		}
 		else
 		{
 			ChangeSuffix(m_zipfilename, ".zip");
 		}
-		//m_zipfilename[strlen(m_zipfilename)] = '\0';
 	}
 	else
 	{
 		m_zipfilename = pzipfilename;
-		/*m_zipfilename = new char[strlen(pzipfilename) + 1];
-		strcpy(m_zipfilename, pzipfilename);
-		m_zipfilename[strlen(m_zipfilename)] = '\0';*/
 	}
 }
 

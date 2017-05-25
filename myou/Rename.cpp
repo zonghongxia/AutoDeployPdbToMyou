@@ -7,8 +7,17 @@ const int ChangePath::GLOBAL_RENAME_TMP_LENGTH = 128;
 
 void ChangePath::GetUnzipFolderPath(std::string &path)
 {
-	std::string tmp("\0");
-	for (int i = 0; i < path.size(); ++i)
+	//std::string tmp("\0");
+	int i;
+	for (i = path.size() - 1; i >= 0; --i)
+	{
+		if (path[i] == '.')
+		{
+			break;
+		}
+	}
+	path = path.assign(path,0,i);
+	/*for (int i = 0; i < path.size(); ++i)
 	{
 		if (path[i] != '.')
 		{
@@ -19,24 +28,26 @@ void ChangePath::GetUnzipFolderPath(std::string &path)
 			break;
 		}
 	}
-	path = tmp;
+	path = tmp;*/
 }
 
 void ChangePath::GetZipFolderPath(std::string &path, const std::string &changefoldername)
 {
-		char tmp[GLOBAL_RENAME_TMP_LENGTH] = { 0 };
+		//char tmp[GLOBAL_RENAME_TMP_LENGTH] = { 0 };
+		std::string tmp;
 		int i;
 		for (i = path.size() - 1; i >= 0; --i)
 		{
-			if (path[i] == '/')
+			if (path[i] == '\\')
 			{
 				break;
 			}
 		}
-
-		strncpy(tmp, path.c_str(), i + 1);
-		strcat(tmp, changefoldername.c_str());
-		tmp[strlen(tmp)] = '\0';
+		tmp = path.assign(path,0,i+1);
+		tmp += changefoldername;
+		/*strncpy(tmp, path.c_str(), i + 1);
+		strcat(tmp, changefoldername.c_str());*/
+		//tmp[strlen(tmp)] = '\0';
 		path = tmp;
 }
 

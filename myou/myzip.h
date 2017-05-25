@@ -39,35 +39,4 @@ private:
 	std::string m_zipfilename;
 };
 
-
-
-//class gZIP
-//{
-//public:
-//	gZIP(const char *ppath, char *pzipfilename = NULL);//输入一个路径和需要压缩的文件的路径
-//	void CreateMyZip();
-//
-//	~gZIP();
-//
-//private:
-//	static void ChangeSuffix(char *&path, char *suffix);
-//
-//	void GetSubStr(std::string path, std::string &subtmp);
-//
-//	void GetZipNameFromPath(const std::vector<std::string> &ve, const std::string path, std::vector<std::string> &zipvector);
-//
-//	bool IsFolder();
-//	void ZipFolder();
-//	void ZipFile();
-//	
-//private:
-//	static const int GLOBAL_LENSZIP;
-//	static const int GLOBAL_TMP_LENGTH;
-//
-//private:
-//	char* m_path;
-//	char* m_zipfilename;
-//};
-
-
 #endif

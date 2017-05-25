@@ -15,7 +15,7 @@ typedef struct PostNode
 	const std::string m_appversion;
 }PostNode;
 
-struct myprogress
+struct myprogress//½ø¶ÈÌõ
 {
 	double lastruntime;
 	CURL *curl;

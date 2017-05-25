@@ -146,11 +146,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GetDiffHour.cpp" />
+    <ClCompile Include="GetSatisfyDiffHour.cpp" />
     <ClCompile Include="Get_Cookie.cpp" />
     <ClCompile Include="List_Filepath.cpp" />
+    <ClCompile Include="list_satifydiffhour_file.cpp" />
     <ClCompile Include="Move_Cursor.cpp" />
     <ClCompile Include="myunzip.cpp" />
     <ClCompile Include="myzip.cpp" />
+    <ClCompile Include="PackagPost.cpp" />
     <ClCompile Include="PostFiletoWeb.cpp" />
     <ClCompile Include="Rename.cpp" />
     <ClCompile Include="main.cpp" />
@@ -158,11 +162,16 @@
     <ClCompile Include="zip.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Constant.h" />
+    <ClInclude Include="GetDiffHour.h" />
+    <ClInclude Include="GetSatisfyDiffHour.h" />
     <ClInclude Include="Get_Cookie.h" />
     <ClInclude Include="List_Filepath.h" />
+    <ClInclude Include="list_satifydiffhour_file.h" />
     <ClInclude Include="Move_Cursor.h" />
     <ClInclude Include="myunzip.h" />
     <ClInclude Include="myzip.h" />
+    <ClInclude Include="PackagPost.h" />
     <ClInclude Include="PostFiletoWeb.h" />
     <ClInclude Include="Rename.h" />
   </ItemGroup>

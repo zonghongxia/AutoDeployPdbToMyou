@@ -1,4 +1,10 @@
 Debug
 packages
 myou.VC.db
+myou.VC.db
+myou.VC.VC.opendb
+myou/Debug
+myou/myou.vcxproj.filters
+myou/myou.vcxproj
+packages.config
 
