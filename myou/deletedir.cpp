@@ -28,7 +28,7 @@ bool DeleteFolderorFile::DeleteDir()
 		if (_S_IFDIR & sfile.st_mode)
 		{
 
-			if (DeleteFolder(m_pDir.c_str()))////////////////////
+			if (DeleteDirectory(m_pDir.c_str()))////////////////////
 			{
 				return true;
 			}
@@ -36,49 +36,33 @@ bool DeleteFolderorFile::DeleteDir()
 	}
 	return true;
 }
-bool DeleteFolderorFile::DeleteFolder(const std::string &lpPath)
+
+bool DeleteFolderorFile::DeleteDirectory(LPCTSTR lpszDir, bool noRecycleBin)
 {
-	char szFind[MAX_PATH];
-	WIN32_FIND_DATA FindFileData;
-	strcpy(szFind, lpPath.c_str());
-	strcat(szFind, "\\*.*");
-	HANDLE hFind = ::FindFirstFile(szFind, &FindFileData);
-	if (INVALID_HANDLE_VALUE == hFind)//ÓÐÈ¤µÄ·µ»Ø 
-	{
-		return false;
-	}
-	while (TRUE) {
-		if (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-		{  //ÅÐ¶ÏÊÇ·ñÎªÎÄ¼þ¼Ð        
-			if (FindFileData.cFileName[0] != '.')
-			{
-				strcpy(szFind, lpPath.c_str());
-				strcat(szFind, "\\");
-				strcat(szFind, FindFileData.cFileName);
-				//std::cout << szFind << std::endl;
-				if (!DeleteFolder(szFind))
-				{
-					return false;
-				}
-			}
-		}
-		else
-		{
-			std::string buf;
-			buf = lpPath;
-			buf += "\\";
-			buf += FindFileData.cFileName;
-			if (!DeleteFile(buf.c_str()))//Ç¶Ì×ËÑË÷É¾³ý
-			{
-				return false;
-			}
-		}
-		if (!FindNextFile(hFind, &FindFileData))
-		{
-			break;
-		}
-	}
-	FindClose(hFind);
-	RemoveDirectory(lpPath.c_str());
-	return true;
+	int len = _tcslen(lpszDir);
+	TCHAR *pszFrom = new TCHAR[len + 2];
+	_tcscpy(pszFrom, lpszDir);
+	pszFrom[len] = 0;
+	pszFrom[len + 1] = 0;
+
+
+	SHFILEOPSTRUCT fileop;
+	fileop.hwnd = NULL;			// no status display
+	fileop.wFunc = FO_DELETE;	// delete operation
+	fileop.pFrom = pszFrom;		// source file name as double null terminated string
+	fileop.pTo = NULL;			// no destination needed
+	fileop.fFlags = FOF_NOCONFIRMATION | FOF_SILENT;	// do not prompt the user
+
+	if (!noRecycleBin)
+		fileop.fFlags |= FOF_ALLOWUNDO;
+
+	fileop.fAnyOperationsAborted = FALSE;
+	fileop.lpszProgressTitle = NULL;
+	fileop.hNameMappings = NULL;
+
+	int ret = SHFileOperation(&fileop);
+
+	delete[] pszFrom;
+
+	return (ret == 0);
 }

@@ -15,10 +15,10 @@ int main(int argc, char ** argv)//appkey,path,hour
 {
 	/*std::string tp;
 	double hour = 0.0;
-	std::string appkey;*/
+	std::string appkey;*///cf167a622948a3b42a7d7aacfcf3dd64f6e4d81b D://myouser/6.0/SeewoService/symbols 1
 	std::string appkey("cf167a622948a3b42a7d7aacfcf3dd64f6e4d81b");
 	std::string tp("D://myouser/6.0/SeewoService/symbols");
-	double hour = 13.2;
+	double hour = 12;
 	
 	for (int i = 1; i < argc; ++i)
 	{
@@ -41,10 +41,16 @@ int main(int argc, char ** argv)//appkey,path,hour
 		std::vector<std::string> file_vec;
 		satisfy.GetHourList(file_vec);
 		satisfy.show(file_vec);
-		PackagPost post;
-
-		post.PostToWeb(file_vec,appkey);
-		//getchar();
+		if (!file_vec.empty())
+		{
+			PackagPost post;
+			post.PostToWeb(file_vec, appkey);
+		}
+		else
+		{
+			std::cout << "No File Can Post" << std::endl;
+		}
 	}
+	//getchar();
 	return 0;
 }

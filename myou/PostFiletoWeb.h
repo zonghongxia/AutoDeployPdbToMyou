@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <curl/curl.h>
+#include <string>
 #include "Move_Cursor.h"
 
 typedef struct PostNode
@@ -33,6 +34,7 @@ public:
 private:
 	static const std::string S_SUFFIX_RENAME;
 	static int older_progress(void *p, double dltotal, double dlnow, double ultotal, double ulnow);//回调函数
+	static size_t CallBackWrite(const char *data, size_t size, int nmember, std::string  * strData);//写入数据的回调函数
 	PostNode *m_node;
 	static bool m_btag;
 };

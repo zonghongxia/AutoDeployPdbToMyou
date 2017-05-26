@@ -13,13 +13,16 @@ PostFiletoWeb::PostFiletoWeb(PostNode * const node)
 	}
 	m_node = node;
 }
-PostFiletoWeb::~PostFiletoWeb()   {}
+PostFiletoWeb::~PostFiletoWeb()  
+{
+	m_btag = false;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 int PostFiletoWeb::older_progress(void *p, double dltotal, double dlnow, double ultotal, double ulnow)
 {
-	if ((ulnow == ultotal && ulnow == 0) || (dltotal != 0) || (dlnow != 0))
+	if ((ulnow == ultotal && ulnow == 0) || (dltotal != 0 && dlnow != 0))
 	{
 		;
 	}
@@ -44,6 +47,15 @@ int PostFiletoWeb::older_progress(void *p, double dltotal, double dlnow, double 
 	return 0;
 }
 //////////////////////////////////////////////////////////////////////////////
+
+size_t PostFiletoWeb::CallBackWrite(const char *data, size_t size, int nmember, std::string  * strData)//写入数据的回调函数
+{
+	size_t sizes = size * nmember;
+	strData->append(data, sizes);
+	return sizes;
+}
+////////////////////////////////////////////////
+
 
 void PostFiletoWeb::PostHttp()
 {
@@ -77,6 +89,7 @@ void PostFiletoWeb::PostHttp()
 		CURLFORM_END
 	);
 
+	std::string strHeader;
 	curl = curl_easy_init();
 
 	if (curl)
@@ -85,6 +98,14 @@ void PostFiletoWeb::PostHttp()
 		curl_easy_setopt(curl, CURLOPT_COOKIE, m_node->m_cookie.c_str());
 		curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);
 		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, true);
+
+		//////////////////////////////////////////////////////////////////
+
+		curl_easy_setopt(curl, CURLOPT_HEADERDATA, &strHeader);          //将响应头部信息保存到strRecvData
+		curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, CallBackWrite);
+
+		/////////////////////////////////////////////////////////////////
+
 
 		curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
 		curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
@@ -117,7 +138,9 @@ void PostFiletoWeb::PostHttp()
 		curl_formfree(formpost);
 		std::cout << std::endl;
 		std::cout << "上传完毕" <<std:: endl;
+		std::cout << std::endl;
 	}
+	std::cout<<strHeader<<std::endl;
 }
 void PostFiletoWeb::GetZipPath(std::string &path)
 {
