@@ -90,7 +90,7 @@ void PostFiletoWeb::PostHttp()
 		curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
 
 		/********************************************************************/
-		//进度条的实现
+		//进度条的使用
 		struct myprogress prog;
 
 		prog.lastruntime = 0;

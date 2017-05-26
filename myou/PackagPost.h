@@ -9,13 +9,12 @@
 #include "Get_Cookie.h"
 #include "PostFiletoWeb.h"
 #include "Constant.h"
+#include "deletedir.h"
 
 class PackagPost
 {
 public:
-	bool IsPostFiletoWeb();
-
-	void PostToWeb(const std::vector<std::string> &file_vec);
+	void PostToWeb(const std::vector<std::string> &file_vec,const std::string &appkey);
 private:
 
 	void ExtractPathandAppversion(std::map<std::string, std::string> &apmap, const std::vector<std::string> &file_vec);

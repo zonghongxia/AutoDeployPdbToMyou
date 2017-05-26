@@ -57,6 +57,9 @@
     <ClCompile Include="list_satifydiffhour_file.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="deletedir.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List_Filepath.h">
@@ -93,6 +96,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Constant.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="deletedir.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

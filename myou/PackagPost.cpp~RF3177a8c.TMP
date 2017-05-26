@@ -54,18 +54,20 @@ void PackagPost::PostToWeb(const std::vector<std::string> &file_vec,const std::s
 		DeleteFolderorFile deletezip(postfilepath);
 		deletezip.DeleteDir();
 
-
+		std::string dirName = deletepath;
+		bool flag = CreateDirectory(dirName.c_str(), NULL);
 		DeleteFolderorFile deletefolder(deletepath);
 		deletefolder.DeleteDir();
 		deletevector.push_back(deletepath);
 		/////////////////////////////////////////////
 	}
 	//и╬ЁЩ©уд©б╪
-	for (std::vector<std::string>::iterator it = deletevector.begin(); it != deletevector.end(); ++it)
-	{
-		DeleteFolderorFile tmp(*it);
-		tmp.DeleteDir();
-	}
+	//for (std::vector<std::string>::iterator it = deletevector.begin(); it != deletevector.end(); ++it)
+	//{
+	//	//std::cout << (*it) << std::endl;
+	//	DeleteFolderorFile tmp(*it);
+	//	tmp.DeleteDir();
+	//}
 }
 
 

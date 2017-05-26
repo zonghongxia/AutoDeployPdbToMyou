@@ -1,6 +1,7 @@
 #include "PackagPost.h"
 
-void PackagPost::PostToWeb(const std::vector<std::string> &file_vec,const std::string &appkey)
+
+const std::string PackagPost::PostToWeb(const std::vector<std::string> &file_vec,const std::string &appkey)
 {
 	std::map<std::string, std::string> apmap;
 	ExtractPathandAppversion(apmap,file_vec);
@@ -14,6 +15,7 @@ void PackagPost::PostToWeb(const std::vector<std::string> &file_vec,const std::s
 	//std::cout << cookie << std::endl;
 
 	std::vector<std::string> deletevector;//保存删除临时文件夹的路径
+	std::string deletetmp;
 
 	for (std::map<std::string,std::string>::iterator it = apmap.begin();  it!=apmap.end();  ++it)
 	{
@@ -54,21 +56,20 @@ void PackagPost::PostToWeb(const std::vector<std::string> &file_vec,const std::s
 		DeleteFolderorFile deletezip(postfilepath);
 		deletezip.DeleteDir();
 
-
 		DeleteFolderorFile deletefolder(deletepath);
 		deletefolder.DeleteDir();
 		deletevector.push_back(deletepath);
 		/////////////////////////////////////////////
 	}
+
 	//删除空目录
 	for (std::vector<std::string>::iterator it = deletevector.begin(); it != deletevector.end(); ++it)
 	{
 		DeleteFolderorFile tmp(*it);
 		tmp.DeleteDir();
+		std::cout << "deletepath" << *it << std::endl;
 	}
 }
-
-
 
 void PackagPost::ExtractPathandAppversion(std::map<std::string, std::string> &apmap,const std::vector<std::string> &file_vec)
 {

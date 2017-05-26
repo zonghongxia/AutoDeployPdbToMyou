@@ -10,25 +10,29 @@
 #include "PackagPost.h"
 #include "GetSatisfyDiffHour.h"
 
-int main(int argc, char ** argv)
+
+int main(int argc, char ** argv)//appkey,path,hour
 {
-	std::string tp;
+	/*std::string tp;
 	double hour = 0.0;
-	/*std::string tp("D://myouser/6.0/SeewoService/symbols");
-	double hour = 6.9;*/
+	std::string appkey;*/
+	std::string appkey("cf167a622948a3b42a7d7aacfcf3dd64f6e4d81b");
+	std::string tp("D://myouser/6.0/SeewoService/symbols");
+	double hour = 13.2;
+	
 	for (int i = 1; i < argc; ++i)
 	{
 		if (i == 1)
 		{
-			tp = argv[i];
+			appkey = argv[i];
 		}
 		else if (i == 2)
 		{
-			hour = atof(argv[i]);
+			tp = argv[i];
 		}
-		else
+		else if(i == 3)
 		{
-			;
+			hour = atof(argv[i]);
 		}
 	}
 	if (!tp.empty() || 0.0 != hour)
@@ -38,11 +42,9 @@ int main(int argc, char ** argv)
 		satisfy.GetHourList(file_vec);
 		satisfy.show(file_vec);
 		PackagPost post;
-		if (post.IsPostFiletoWeb())
-		{
-			post.PostToWeb(file_vec);
-		}
-		getchar();
+
+		post.PostToWeb(file_vec,appkey);
+		//getchar();
 	}
 	return 0;
 }
