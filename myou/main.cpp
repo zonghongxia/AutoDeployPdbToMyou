@@ -13,12 +13,12 @@
 
 int main(int argc, char ** argv)//appkey,path,hour
 {
-	/*std::string tp;
+	std::string tp;
 	double hour = 0.0;
-	std::string appkey;*///cf167a622948a3b42a7d7aacfcf3dd64f6e4d81b D://myouser/6.0/SeewoService/symbols 1
-	std::string appkey("cf167a622948a3b42a7d7aacfcf3dd64f6e4d81b");
+	std::string appkey;//cf167a622948a3b42a7d7aacfcf3dd64f6e4d81b D://myouser/6.0/SeewoService/symbols 1
+	/*std::string appkey("cf167a622948a3b42a7d7aacfcf3dd64f6e4d81b");
 	std::string tp("D://myouser/6.0/SeewoService/symbols");
-	double hour = 12;
+	double hour = 3;*/
 	
 	for (int i = 1; i < argc; ++i)
 	{
