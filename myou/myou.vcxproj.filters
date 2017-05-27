@@ -60,6 +60,12 @@
     <ClCompile Include="deletedir.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="listrangefolder.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GetRangeFolder.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List_Filepath.h">
@@ -99,6 +105,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="deletedir.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="listrangefolder.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GetRangeFolder.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

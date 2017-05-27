@@ -149,8 +149,10 @@
   <ItemGroup>
     <ClCompile Include="deletedir.cpp" />
     <ClCompile Include="GetDiffHour.cpp" />
+    <ClCompile Include="GetRangeFolder.cpp" />
     <ClCompile Include="GetSatisfyDiffHour.cpp" />
     <ClCompile Include="Get_Cookie.cpp" />
+    <ClCompile Include="listrangefolder.cpp" />
     <ClCompile Include="List_Filepath.cpp" />
     <ClCompile Include="list_satifydiffhour_file.cpp" />
     <ClCompile Include="Move_Cursor.cpp" />
@@ -167,8 +169,10 @@
     <ClInclude Include="Constant.h" />
     <ClInclude Include="deletedir.h" />
     <ClInclude Include="GetDiffHour.h" />
+    <ClInclude Include="GetRangeFolder.h" />
     <ClInclude Include="GetSatisfyDiffHour.h" />
     <ClInclude Include="Get_Cookie.h" />
+    <ClInclude Include="listrangefolder.h" />
     <ClInclude Include="List_Filepath.h" />
     <ClInclude Include="list_satifydiffhour_file.h" />
     <ClInclude Include="Move_Cursor.h" />
