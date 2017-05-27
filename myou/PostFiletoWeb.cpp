@@ -41,7 +41,8 @@ int PostFiletoWeb::older_progress(void *p, double dltotal, double dlnow, double 
 		input[strlen(input)] = '%';
 		input[strlen(input)] = '\0';
 
-		std::cout << input << std::endl;
+		/*std::cout << input << std::endl;*/
+		std::cout << input << "   ";
 		movecursor.gotoxy(coord.X, coord.Y);
 	}
 	return 0;

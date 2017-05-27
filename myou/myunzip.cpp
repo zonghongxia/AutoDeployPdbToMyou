@@ -53,7 +53,7 @@ void UNZIP::CreateZip()
 		char input[10] = { 0 };
 		sprintf(input, "%0.1f", tmpnum);
 		strcat(input, "%");
-		std::cout << input;
+		std::cout << input<<"  ";
 		if (zi == numitems - 1)
 		{
 			continue;

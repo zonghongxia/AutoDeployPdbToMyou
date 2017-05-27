@@ -40,9 +40,9 @@ void PackagPost::PostToWeb(const std::vector<std::string> &file_vec,const std::s
 		ZIP zip(absolutepath);
 		zip.CreateMyZip();
 
+		//删除临时生成的文件夹
 		DeleteFolderorFile deletefolder(absolutepath);
 		deletefolder.DeleteDir();
-		//deletefolder.DeleteDir();
 
 		//////上传文件到web
 		std::string deletepath = absolutepath;
@@ -53,27 +53,11 @@ void PackagPost::PostToWeb(const std::vector<std::string> &file_vec,const std::s
 		PostFiletoWeb posthttp(&postnode);
 		posthttp.PostHttp();
 
-		//删除临时生成的文件夹和压缩包
+		//删除临时生成的压缩包
 		/////////////////////////
-
-		//std::string postfilepath("D://myouser/6.0/SeewoService/symbols/6.0.8.5642/symbols.zip");
 		DeleteFolderorFile deletezip(postfilepath);
 		deletezip.DeleteDir();
-
-
-		//std::string deletepath("D://myouser/6.0/SeewoService/symbols/6.0.8.5642/symbols");
-		/*DeleteFolderorFile deletefolder(deletepath);
-		deletefolder.DeleteDir();*/
-
-		//deletevector.push_back(deletepath);
-		/////////////////////////////////////////////
 	}
-	//删除空目录
-	/*for (std::vector<std::string>::iterator it = deletevector.begin(); it != deletevector.end(); ++it)
-	{
-		DeleteFolderorFile tmp(*it);
-		tmp.DeleteDir();
-	}*/
 }
 
 
