@@ -14,10 +14,11 @@
 int main(int argc, char ** argv)//appkey,path,range1,range2
 {
 	//cf167a622948a3b42a7d7aacfcf3dd64f6e4d81b D://myouser/6.0/SeewoService/symbols 6.0.8.5551 6.0.8.5600
-	/*std::string appkey("cf167a622948a3b42a7d7aacfcf3dd64f6e4d81b");
-	std::string tp("D://myouser/6.0/SeewoService/symbols");
-	std::string range1("6.0.8.5551");
-	std::string range2("6.0.8.5600");*/
+	//std::string appkey("cf167a622948a3b42a7d7aacfcf3dd64f6e4d81b");
+	//std::string tp("D://myouser/6.0/SeewoService/symbols");
+	//std::string range1("6.0.8.5551");
+	////std::string range2;
+	//std::string range2("6.0.8.5600");
 	std::string appkey;
 	std::string tp;
 	std::string range1;

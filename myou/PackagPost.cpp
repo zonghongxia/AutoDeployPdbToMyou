@@ -13,8 +13,6 @@ void PackagPost::PostToWeb(const std::vector<std::string> &file_vec,const std::s
 	std::string cookie = gcookie.GetCookies();
 	//std::cout <<"cookie:="<< cookie << std::endl;
 
-	std::vector<std::string> deletevector;//保存删除临时文件夹的路径
-
 	for (std::map<std::string,std::string>::iterator it = apmap.begin();  it!=apmap.end();  ++it)
 	{
 
